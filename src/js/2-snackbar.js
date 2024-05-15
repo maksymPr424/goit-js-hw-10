@@ -15,22 +15,29 @@ iziToast.settings({
   position: 'topRight',
 });
 
-const createPromise = ({ delay, shouldResolve }) => {
+const createPromise = ({ value, delay, shouldResolve }) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldResolve) {
-        resolve(`✅ Fulfilled promise in ${delay}ms`);
+        resolve(`✅ ${value} promise in ${delay}ms`);
       } else {
-        reject(`❌ Rejected promise in ${delay}ms`);
+        reject(`❌ ${value} promise in ${delay}ms`);
       }
     }, delay);
   });
 };
 
+const firstUpperCase = string => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 const formSubmit = e => {
   e.preventDefault();
 
+  const valueRadio = radios[0].checked ? radios[0].value : radios[1].value;
+
   const objForPromise = {
+    value: firstUpperCase(valueRadio),
     delay: Number(numOfDel.value),
     shouldResolve: radios[0].checked,
   };
