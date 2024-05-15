@@ -68,7 +68,7 @@ const validationTargetDate = choseDay => {
 
   btnStart.disabled = true;
   iziToast.error({
-    iconUrl: '../img/text.svg',
+    iconUrl: './img/text.svg',
     message: 'Please choose a date in the future',
   });
 };
